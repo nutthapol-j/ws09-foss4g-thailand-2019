@@ -13,18 +13,77 @@ npm install --save ws09-foss4g-thailand-2019
 ## Usage
 
 ```tsx
-import * as React from 'react'
+import * as React from "react";
 
-import { useMyHook } from 'ws09-foss4g-thailand-2019'
+import {
+  Imagecomponent,
+  Chartcomponent,
+  Mapcomponent
+} from "ws09-foss4g-thailand-2019";
 
 const Example = () => {
-  const example = useMyHook()
+  const example = useMyHook();
   return (
     <div>
-      {example}
+      <div>
+        <Mapcomponent />
+      </div>
+      <div>
+        <Chartcomponent
+          ref={ref}
+          options={{
+            chart: { type: "spline" },
+            title: {
+              text: "Real-time Air Quality Index"
+            },
+            xAxis: {
+              type: "datetime"
+            },
+            yAxis: {
+              title: {
+                text: "Air Quality Index"
+              }
+            },
+            legend: {
+              layout: "vertical",
+              align: "right",
+              verticalAlign: "middle"
+            },
+            tooltip: {
+              crosshairs: true,
+              shared: true
+            },
+            series: [
+              {
+                name: "random value",
+                data: state
+              }
+            ],
+            responsive: {
+              rules: [
+                {
+                  condition: {
+                    maxWidth: 500
+                  },
+                  chartOptions: {
+                    legend: {
+                      layout: "horizontal",
+                      align: "center",
+                      verticalAlign: "bottom"
+                    }
+                  }
+                }
+              ]
+            }
+          }}
+        />
+      </div>
+      <div>
+        <Imagecomponent src={state} width={500} height={300} />
+      </div>
     </div>
-  )
-}
+  );
+};
 ```
 
 ## License
